@@ -1,0 +1,5 @@
+E:\Labs\Другий курс\IntelectualGamesImproved\Common\bin\Debug\Common.dll
+E:\Labs\Другий курс\IntelectualGamesImproved\Common\bin\Debug\Common.pdb
+E:\Labs\Другий курс\IntelectualGamesImproved\Common\obj\Debug\Common.dll
+E:\Labs\Другий курс\IntelectualGamesImproved\Common\obj\Debug\Common.pdb
+E:\Labs\Другий курс\IntelectualGamesImproved\Common\obj\Debug\Common.csprojResolveAssemblyReference.cache

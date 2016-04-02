@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="IntelectualGamesImprovedModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Authors">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Base" Relationship="Self.FK_Base_Authors" FromRole="Authors" ToRole="Base" />
+  </EntityType>
+  <EntityType Name="Base">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Answear" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AuthorID" Type="Int32" Nullable="false" />
+    <Property Name="TypeID" Type="Int32" Nullable="false" />
+    <Property Name="DifficultyID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Authors" Relationship="Self.FK_Base_Authors" FromRole="Base" ToRole="Authors" />
+    <NavigationProperty Name="Difficulties" Relationship="Self.FK_Base_Difficulties" FromRole="Base" ToRole="Difficulties" />
+    <NavigationProperty Name="TypeOfQuestion" Relationship="Self.FK_Base_TypeOfQuestion" FromRole="Base" ToRole="TypeOfQuestion" />
+    <NavigationProperty Name="ContestToQuestion" Relationship="Self.FK_ContestToQuestion_Base" FromRole="Base" ToRole="ContestToQuestion" />
+  </EntityType>
+  <EntityType Name="Contests">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ContestToQuestion" Relationship="Self.FK_ContestToQuestion_Contests" FromRole="Contests" ToRole="ContestToQuestion" />
+    <NavigationProperty Name="ContestToTeam" Relationship="Self.FK_ContestToTeam_Contests" FromRole="Contests" ToRole="ContestToTeam" />
+  </EntityType>
+  <EntityType Name="ContestToQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContestID" Type="Int32" Nullable="false" />
+    <Property Name="QuestionID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Base" Relationship="Self.FK_ContestToQuestion_Base" FromRole="ContestToQuestion" ToRole="Base" />
+    <NavigationProperty Name="Contests" Relationship="Self.FK_ContestToQuestion_Contests" FromRole="ContestToQuestion" ToRole="Contests" />
+  </EntityType>
+  <EntityType Name="ContestToTeam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContestID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Contests" Relationship="Self.FK_ContestToTeam_Contests" FromRole="ContestToTeam" ToRole="Contests" />
+    <NavigationProperty Name="Teams" Relationship="Self.FK_ContestToTeam_Teams" FromRole="ContestToTeam" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="Difficulties">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Base" Relationship="Self.FK_Base_Difficulties" FromRole="Difficulties" ToRole="Base" />
+  </EntityType>
+  <EntityType Name="Players">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="PlayerToTeam" Relationship="Self.FK_PlayerToTeam_Players1" FromRole="Players" ToRole="PlayerToTeam" />
+  </EntityType>
+  <EntityType Name="PlayerToTeam">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PlayerID" Type="Int32" Nullable="false" />
+    <Property Name="TeamID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Players" Relationship="Self.FK_PlayerToTeam_Players1" FromRole="PlayerToTeam" ToRole="Players" />
+    <NavigationProperty Name="Teams" Relationship="Self.FK_PlayerToTeam_Teams1" FromRole="PlayerToTeam" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ContestToTeam" Relationship="Self.FK_ContestToTeam_Teams" FromRole="Teams" ToRole="ContestToTeam" />
+    <NavigationProperty Name="PlayerToTeam" Relationship="Self.FK_PlayerToTeam_Teams1" FromRole="Teams" ToRole="PlayerToTeam" />
+  </EntityType>
+  <EntityType Name="TypeOfQuestion">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Base" Relationship="Self.FK_Base_TypeOfQuestion" FromRole="TypeOfQuestion" ToRole="Base" />
+  </EntityType>
+  <Association Name="FK_Base_Authors">
+    <End Role="Authors" Type="Self.Authors" Multiplicity="1" />
+    <End Role="Base" Type="Self.Base" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Authors">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Base">
+        <PropertyRef Name="AuthorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Base_Difficulties">
+    <End Role="Difficulties" Type="Self.Difficulties" Multiplicity="1" />
+    <End Role="Base" Type="Self.Base" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Difficulties">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Base">
+        <PropertyRef Name="DifficultyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Base_TypeOfQuestion">
+    <End Role="TypeOfQuestion" Type="Self.TypeOfQuestion" Multiplicity="1" />
+    <End Role="Base" Type="Self.Base" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfQuestion">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Base">
+        <PropertyRef Name="TypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContestToQuestion_Base">
+    <End Role="Base" Type="Self.Base" Multiplicity="1" />
+    <End Role="ContestToQuestion" Type="Self.ContestToQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Base">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContestToQuestion">
+        <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContestToQuestion_Contests">
+    <End Role="Contests" Type="Self.Contests" Multiplicity="1" />
+    <End Role="ContestToQuestion" Type="Self.ContestToQuestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contests">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContestToQuestion">
+        <PropertyRef Name="ContestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContestToTeam_Contests">
+    <End Role="Contests" Type="Self.Contests" Multiplicity="1" />
+    <End Role="ContestToTeam" Type="Self.ContestToTeam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Contests">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContestToTeam">
+        <PropertyRef Name="ContestID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ContestToTeam_Teams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="ContestToTeam" Type="Self.ContestToTeam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ContestToTeam">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerToTeam_Players1">
+    <End Role="Players" Type="Self.Players" Multiplicity="1" />
+    <End Role="PlayerToTeam" Type="Self.PlayerToTeam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Players">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerToTeam">
+        <PropertyRef Name="PlayerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PlayerToTeam_Teams1">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="PlayerToTeam" Type="Self.PlayerToTeam" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="PlayerToTeam">
+        <PropertyRef Name="TeamID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="IntelectualGamesImprovedEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Authors" EntityType="Self.Authors" />
+    <EntitySet Name="Base" EntityType="Self.Base" />
+    <EntitySet Name="Contests" EntityType="Self.Contests" />
+    <EntitySet Name="ContestToQuestion" EntityType="Self.ContestToQuestion" />
+    <EntitySet Name="ContestToTeam" EntityType="Self.ContestToTeam" />
+    <EntitySet Name="Difficulties" EntityType="Self.Difficulties" />
+    <EntitySet Name="Players" EntityType="Self.Players" />
+    <EntitySet Name="PlayerToTeam" EntityType="Self.PlayerToTeam" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" />
+    <EntitySet Name="TypeOfQuestion" EntityType="Self.TypeOfQuestion" />
+    <AssociationSet Name="FK_Base_Authors" Association="Self.FK_Base_Authors">
+      <End Role="Authors" EntitySet="Authors" />
+      <End Role="Base" EntitySet="Base" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Base_Difficulties" Association="Self.FK_Base_Difficulties">
+      <End Role="Difficulties" EntitySet="Difficulties" />
+      <End Role="Base" EntitySet="Base" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Base_TypeOfQuestion" Association="Self.FK_Base_TypeOfQuestion">
+      <End Role="TypeOfQuestion" EntitySet="TypeOfQuestion" />
+      <End Role="Base" EntitySet="Base" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContestToQuestion_Base" Association="Self.FK_ContestToQuestion_Base">
+      <End Role="Base" EntitySet="Base" />
+      <End Role="ContestToQuestion" EntitySet="ContestToQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContestToQuestion_Contests" Association="Self.FK_ContestToQuestion_Contests">
+      <End Role="Contests" EntitySet="Contests" />
+      <End Role="ContestToQuestion" EntitySet="ContestToQuestion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContestToTeam_Contests" Association="Self.FK_ContestToTeam_Contests">
+      <End Role="Contests" EntitySet="Contests" />
+      <End Role="ContestToTeam" EntitySet="ContestToTeam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ContestToTeam_Teams" Association="Self.FK_ContestToTeam_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="ContestToTeam" EntitySet="ContestToTeam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerToTeam_Players1" Association="Self.FK_PlayerToTeam_Players1">
+      <End Role="Players" EntitySet="Players" />
+      <End Role="PlayerToTeam" EntitySet="PlayerToTeam" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PlayerToTeam_Teams1" Association="Self.FK_PlayerToTeam_Teams1">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="PlayerToTeam" EntitySet="PlayerToTeam" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(IntelectualGamesImprovedModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(IntelectualGamesImprovedModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+</Schema>

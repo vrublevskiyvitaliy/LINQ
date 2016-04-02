@@ -1,0 +1,12 @@
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\AccesToDataBase.dll.config
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\AccesToDataBase.dll
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\AccesToDataBase.pdb
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\EntityFramework.dll
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\EntityFramework.SqlServer.dll
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\EntityFramework.xml
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\EntityFramework.SqlServer.xml
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\obj\Debug\AccesToDataBase.csprojResolveAssemblyReference.cache
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\obj\Debug\AccesToDataBase.dll
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\obj\Debug\AccesToDataBase.pdb
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\Common.dll
+E:\Labs\Другий курс\IntelectualGamesImproved\AccesToDataBase\bin\Debug\Common.pdb
